@@ -4,7 +4,7 @@ template <typename TIPO>
 struct TElemento{
   TDado dado;
   int *proximo;
-}
+} //test
 
 template <typename TIPO>
 struct Tlista{
