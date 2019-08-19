@@ -8,7 +8,6 @@ int main()
 {
     TLista baralho;
     inicializa_baralho(baralho);
-
     monta_baralho(baralho);
     imprime_baralho(baralho);
     cout<<endl<<"=========================="<<endl;
