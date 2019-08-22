@@ -25,7 +25,7 @@ void imprime_carta(TCarta carta){
     cout<<"Naipe: "<<aux<<"\tValor: "<<carta.valor;
 }
 
-void monta_baralho(TLista<TCarta,52> &lista){
+void monta_baralho(TElemento<TCarta,52> &lista){
     TCarta aux;
     for(int i=0;i<=6;i+=2){
         for(int j=1;j<=13;j++){

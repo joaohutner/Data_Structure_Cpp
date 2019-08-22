@@ -1,24 +1,34 @@
 #ifndef LINKED_LIST_H_INCLUDED
 #define LINKED_LIST_H_INCLUDED
 
+using namespace std;
+
 template <typename TIPO>
 struct TElemento{
   TIPO dado;
   int *proximo;
-} //testeseses
+};
 
 template <typename TIPO>
 struct TLista{
-  TElemento<TIPO> *inicio
-}
+  TElemento<TIPO> *inicio;
+};
 
 template <typename TIPO>
 void inicializa_lista(TLista <TIPO> &lista){
   lista.inicio = NULL;
+};
+
+template<typename TIPO>
+TElemento<TIPO> * novo_elemento_lista(TIPO dado){ //retorno do tipo TElemento
+  TElemento<TIPO> * novo = new TElemento<TIPO>;
+  novo->dado = dado;
+  novo->proximo = NULL;
+  return novo;
 }
 
 template <typename TIPO>
-bool insere_f(TLista <TIPO> &lista, TIPO dado){
+bool insere_fim(TLista <TIPO> &lista, TIPO dado){
   TElemento <TIPO> *busca;
   busca = lista.inicio;
   if(lista.inicio!=NULL){
@@ -43,15 +53,6 @@ bool insere_f(TLista <TIPO> &lista, TIPO dado){
     return true;
   }
 }
-
-template<typename TIPO>
-TElemento<TIPO> * novo_elemento_lista(TIPO dado){ //returno do tipo TElemento
-  TElemento<TIPO> * novo = new TElemento<TIPO>;
-  novo->dado = dado;
-  novo->proximo = NULL;
-  return novo;
-}
-
 
 template <typename TIPO>
 bool remove_final(TLista<TIPO> &lista){
@@ -101,73 +102,111 @@ template <typename TIPO>
 
 template <typename TIPO>
 bool remove_inicio(TLista<TIPO> &lista){
-  if(lista.inicio->proximo == NULL){
+  if(lista.inicio== NULL){
     return false; //não tem item na lista
   }
-  else()
-
-
+  else if(lista.inicio!=NULL){
+    TElemento <TIPO> *aux;
+    aux = lista.inicio->prox;
+    delete lista.inicio;
+    lista.inicio = aux;
+    return true;
+  }
 }
 
-
-
-/*
-template <typename TIPO, int MAX>
-void remove_inicio(TLista<TIPO,MAX> &lista){
-    if(lista.quantidade > 0){
-        for(int i=0;i<lista.quantidade;i++){
-            lista.elemento[i] = lista.elemento[i+1];
-        }
-        lista.quantidade--;
+template <typename TIPO>
+bool insere_inicio(TLista<TIPO> &lista, TIPO dado){
+  if(lista.inicio == NULL){
+    TElemento *novo = novo_elemento_lista(dado);
+    novo->prox = NULL;
+    lista.inicio = novo;
+    return true;
+  }
+  else if(lista.inicio!=NULL){
+    TElemento *procura;
+    procura = lista.inicio;
+    while(procura->prox != NULL){
+      procura = procura->prox;
     }
-    else{
-        cout<<endl<<"Nao possui carta"<<endl;
-    }
+    TElemento *novo; = novo_elemento_lista(dado);
+    novo->prox = NULL;
+    procura->prox = novo;
+  }
+  else{
+    return false;
+  }
 }
 
-template <typename TIPO, int MAX>
-void insere_inicio(TLista<TIPO,MAX> &lista, TIPO dado){
-    if(lista.quantidade < MAX){
-        for(int i=lista.quantidade;i>0;i--){
-            lista.elemento[i] = lista.elemento[i-1];
-        }
-        TElemento<TIPO> elemento;
-        elemento.dado = dado;
-        lista.elemento[0] = elemento;
-        lista.quantidade++;
+template<typename TIPO>
+bool remove_posicao(TLista<TIPO> &lista, int posicao){
+  if(lista.inicio == NULL){
+    return false;
+    cout<<"\nSem itens na lista\n";
+  }
+  else if(lista.inicio =! NULL){
+    int qtd = qtd(lista);
+    if(p>qtd){
+      cout<<"\nEssa posicao nao existe\n"
     }
     else{
-        cout<<endl<<"Sem espaco no deck"<<endl;
+      TElemento *tras = lista.inicio;
+      TElemento *frente = lista.inicio->proximo
+      int contador = 0;
+      while(qtd!=contador){
+        frente = frente->prox;
+        tras = tras->prox;
+        contador++;
+      }
+      TElemento *aux = tras->prox;
+      tras->prox = frente->prox;
+      delete aux;
     }
+  }
+  else{
+    return false;
+    cout<<"\nNao foi possivel achar o item";
+  }
 }
 
-template <typename TIPO, int MAX>
-void remove_posicao(TLista<TIPO,MAX> &lista,int p){
-    if((lista.quantidade > 0) || (p < lista.quantidade)){
-        for(int i=p;i<lista.quantidade;i++){
-            lista.elemento[i] = lista.elemento[i+1];
-        }
-        lista.quantidade--;
+template<typename TIPO>
+bool insere_posicao(TLista<TIPO> &lista, int p, TIPO dado){
+  qtd = qtd(lista);
+  if(p == 0){
+    bool confere = insere_inicio(lista,dado);
+    if(confere==true){
+      return true;
     }
     else{
-        cout<<endl<<"Nao possui carta ou posicao invalida"<<endl;
+      return false;
     }
+  }
+  else if(p == qtd){
+    bool confere2 = insere_fim(lista,dado);
+    if(confere2==true){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+  else if(p>qtd || p<0){
+    cout<<"\nPosicao inexistente\n";
+    return false;
+  }
+  else{
+    TElemento *tras = lista.inicio;
+    TElemento *frente = lista.inicio->proximo
+    int contador = 0;
+    while(qtd!=contador){
+      frente = frente->prox;
+      tras = tras->prox;
+      contador++;
+    }
+    TElemento *novo = novo_elemento_lista(dado);
+    novo->prox = tras->prox;
+    tras->prox = novo;
+    return true;
+  }
 }
-
-template <typename TIPO, int MAX>
-void insere_posicao(TLista<TIPO,MAX> &lista,int p,TIPO dado){
-    if((p<=lista.quantidade) && (lista.quantidade < MAX)){
-        for(int i=lista.quantidade;i>p;i--){
-            lista.elemento[i] = lista.elemento[i-1];
-        }
-        TElemento<TIPO> elemento;
-        elemento.dado = dado;
-        lista.elemento[p] = elemento;
-        lista.quantidade++;
-    }
-    else{
-        cout<<endl<<"Nao foi possivel adicionar a carta nessa posicao"<<endl;
-    }
-} */
 
 #endif // LINKED_LIST_H_INCLUDED
