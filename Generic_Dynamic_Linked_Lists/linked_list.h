@@ -1,12 +1,10 @@
 #ifndef LINKED_LIST_H_INCLUDED
 #define LINKED_LIST_H_INCLUDED
 
-using namespace std;
-
 template <typename TIPO>
 struct TElemento{
   TIPO dado;
-  int *proximo;
+  TElemento<TIPO> *prox;
 };
 
 template <typename TIPO>
@@ -23,7 +21,7 @@ template<typename TIPO>
 TElemento<TIPO> * novo_elemento_lista(TIPO dado){ //retorno do tipo TElemento
   TElemento<TIPO> * novo = new TElemento<TIPO>;
   novo->dado = dado;
-  novo->proximo = NULL;
+  novo->prox = NULL;
   return novo;
 }
 
@@ -32,23 +30,23 @@ bool insere_fim(TLista <TIPO> &lista, TIPO dado){
   TElemento <TIPO> *busca;
   busca = lista.inicio;
   if(lista.inicio!=NULL){
-    while(busca->proximo != NULL){
-      busca=busca->proximo;
+    while(busca->prox != NULL){
+      busca=busca->prox;
     }
-    if(busca->proximo != NULL){
-      cout<<"\nProblema encontrado\n"
+    if(busca->prox != NULL){
+      cout<<"\nProblema encontrado\n";
       return false;
     }
     else{
       TElemento<TIPO> *novo = novo_elemento_lista(dado);
-      novo->proximo = busca->proximo;
-      busca->proximo = novo;
+      novo->prox= busca->prox;
+      busca->prox= novo;
       return true;
     }
   }
   else{//inserção em uma lista nula
     TElemento<TIPO> *novo = novo_elemento_lista(dado);
-    novo->proximo = NULL;
+    novo->prox = NULL;
     lista.inicio = novo;
     return true;
   }
@@ -62,19 +60,19 @@ bool remove_final(TLista<TIPO> &lista){
   else{
     TElemento <TIPO> *primeiro;
     primeiro = lista.inicio;
-    if(busca->proximo==NULL){
-      busca->proximo = NULL;
-      delete busca;
+    if(primeiro->prox==NULL){
+      primeiro->prox = NULL;
+      delete primeiro;
       return true;
     }
     else{
       TElemento <TIPO> *segundo;
-      segundo = lista.inicio->proximo;
-      while(segundo->proximo != NULL){
-      primeiro=primeiro->proximo;
-      segundo=segundo->proximo;
+      segundo = lista.inicio->prox;
+      while(segundo->prox != NULL){
+      primeiro=primeiro->prox;
+      segundo=segundo->prox;
       }
-      primeiro->proximo = NULL;
+      primeiro->prox = NULL;
       delete segundo;
       return true;
     }
@@ -84,17 +82,17 @@ bool remove_final(TLista<TIPO> &lista){
 
 
 template <typename TIPO>
-  int qtd(TLista<TIPO> &lista){
-  if(lista.inicio->proximo == NULL){
+int qtd(TLista<TIPO> &lista){
+  if(lista.inicio->prox== NULL){
     return 0;
   }
   else{
     TElemento <TIPO> *busca;
     busca = lista.inicio;
-    int contador = 0;
-    while(busca->proximo != NULL){
+    int contador = 1;
+    while(busca->prox != NULL){
     contador++;
-    busca=busca->proximo;
+    busca=busca->prox;
     }
     return contador;
   }
@@ -116,61 +114,48 @@ bool remove_inicio(TLista<TIPO> &lista){
 
 template <typename TIPO>
 bool insere_inicio(TLista<TIPO> &lista, TIPO dado){
-  if(lista.inicio == NULL){
-    TElemento *novo = novo_elemento_lista(dado);
-    novo->prox = NULL;
-    lista.inicio = novo;
-    return true;
-  }
-  else if(lista.inicio!=NULL){
-    TElemento *procura;
-    procura = lista.inicio;
-    while(procura->prox != NULL){
-      procura = procura->prox;
-    }
-    TElemento *novo; = novo_elemento_lista(dado);
-    novo->prox = NULL;
-    procura->prox = novo;
-  }
-  else{
-    return false;
-  }
+  TElemento<TIPO> *novo = novo_elemento_lista(dado);
+  novo->prox = lista.inicio;
+  lista.inicio = novo;
+  return true;
 }
 
 template<typename TIPO>
-bool remove_posicao(TLista<TIPO> &lista, int posicao){
+bool remove_posicao(TLista<TIPO> &lista, int p){
   if(lista.inicio == NULL){
-    return false;
     cout<<"\nSem itens na lista\n";
+    return false;
   }
   else if(lista.inicio =! NULL){
-    int qtd = qtd(lista);
-    if(p>qtd){
-      cout<<"\nEssa posicao nao existe\n"
+    int tam = qtd(lista);
+    if(p>tam){
+      cout<<"\nEssa posicao nao existe\n";
+      return false;
     }
     else{
-      TElemento *tras = lista.inicio;
-      TElemento *frente = lista.inicio->proximo
+      TElemento<TIPO> *tras = lista.inicio;
+      TElemento<TIPO> *frente = lista.inicio->proximo;
       int contador = 0;
-      while(qtd!=contador){
+      while(tam!=contador){
         frente = frente->prox;
         tras = tras->prox;
         contador++;
       }
-      TElemento *aux = tras->prox;
+      TElemento<TIPO> *aux = tras->prox;
       tras->prox = frente->prox;
       delete aux;
     }
+    return true;
   }
   else{
-    return false;
     cout<<"\nNao foi possivel achar o item";
+    return false;
   }
 }
 
 template<typename TIPO>
 bool insere_posicao(TLista<TIPO> &lista, int p, TIPO dado){
-  qtd = qtd(lista);
+  int tam = qtd(lista);
   if(p == 0){
     bool confere = insere_inicio(lista,dado);
     if(confere==true){
@@ -180,7 +165,7 @@ bool insere_posicao(TLista<TIPO> &lista, int p, TIPO dado){
       return false;
     }
   }
-  else if(p == qtd){
+  else if(p == tam){
     bool confere2 = insere_fim(lista,dado);
     if(confere2==true){
       return true;
@@ -189,20 +174,20 @@ bool insere_posicao(TLista<TIPO> &lista, int p, TIPO dado){
       return false;
     }
   }
-  else if(p>qtd || p<0){
+  else if(p>tam || p<0){
     cout<<"\nPosicao inexistente\n";
     return false;
   }
   else{
-    TElemento *tras = lista.inicio;
-    TElemento *frente = lista.inicio->proximo
+    TElemento<TIPO> *tras = lista.inicio;
+    TElemento<TIPO> *frente = lista.inicio->proximo;
     int contador = 0;
-    while(qtd!=contador){
+    while(tam=!contador){
       frente = frente->prox;
       tras = tras->prox;
       contador++;
     }
-    TElemento *novo = novo_elemento_lista(dado);
+    TElemento<TIPO> *novo = novo_elemento_lista(dado);
     novo->prox = tras->prox;
     tras->prox = novo;
     return true;

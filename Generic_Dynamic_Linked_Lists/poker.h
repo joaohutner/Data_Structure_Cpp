@@ -1,7 +1,8 @@
 #ifndef POKER_H_INCLUDED
 #define POKER_H_INCLUDED
 #include <string.h>
-using namespace std;
+#include <time.h> 
+
 
 struct TCarta{
     int naipe;
@@ -25,7 +26,7 @@ void imprime_carta(TCarta carta){
     cout<<"Naipe: "<<aux<<"\tValor: "<<carta.valor;
 }
 
-void monta_baralho(TElemento<TCarta,52> &lista){
+void monta_baralho(TLista<TCarta> &lista){
     TCarta aux;
     for(int i=0;i<=6;i+=2){
         for(int j=1;j<=13;j++){
@@ -36,28 +37,59 @@ void monta_baralho(TElemento<TCarta,52> &lista){
     }
 }
 
-template <typename TIPO, int MAX>
-void embaralhar(TLista<TIPO,MAX> &lista){
+template <typename TIPO>
+bool embaralhar(TLista<TIPO> &lista){
     srand(time(NULL));
-    for(int i=0;i<lista.quantidade;i++){
-        swap(lista.elemento[i],lista.elemento[rand()%(lista.quantidade-1)]);
+    int tam = qtd(lista);
+    TElemento<TIPO> *nave = lista.inicio;
+    TElemento<TIPO> *troca = lista.inicio;
+    if(tam==0){
+        cout<<"Nao existe cartas nesse baralho!";
+        return false;
+    }
+    else{
+        for(int i=0;i<tam;i++){
+            for(int j=0;j<(rand()%(tam-1));j++){
+                troca->prox;
+            }
+            swap(nave.dado,troca.dado);
+            troca = lista.inicio;
+            nave = nave->prox;
+        }
+        return true;
     }
 }
 
-template <typename TIPO1,int MAX1, typename TIPO2, int MAX2>
-void distribuir_cartas(TLista<TIPO1,MAX1> &origem, TLista<TIPO2,MAX2> &destino, int qtd){
-    for(int i=0;i<qtd;i++){
-        insere_inicio(destino,origem.elemento[0].dado);
+template <typename TIPO>
+bool distribuir_cartas(TLista<TIPO> &origem, TLista<TIPO> &destino, int quantas){
+    int qtd_origem = qtd(origem);
+    if(quantas>qtd_origem){
+        cout<<"\nCartas insuficientes!\n";
+        return false;
+    }
+    TElemento<TIPO> *de = origem.inicio;
+    for(int i=0;i<quantas;i++){
+        insere_inicio(destino,de.dado);
         remove_inicio(origem);
+        de = origem.inicio;
     }
+    return true;
 }
 
-template <typename TIPO, int MAX>
-void imprime_generico(TLista<TIPO,MAX> &lista){
-    for(int i=0;i<lista.quantidade;i++){
-        imprime_carta(lista.elemento[i].dado);
-        cout<<endl;
+template <typename TIPO>
+bool imprime_generico(TLista<TIPO> &lista){
+    int qtd_imprime = qtd(lista);
+    TElemento<TIPO> *nave = lista.inicio;
+    if(lista.inicio == NULL){
+        cout<<"\nVoce nao possui itens na lista!\n";
+        return 0;
     }
+    for(int i=0;i<qtd_imprime;i++){
+        imprime_carta(nave->dado);
+        cout<<endl;
+        nave = nave->prox;
+    }
+    return 1;
 }
 
 bool operator < (TCarta a, TCarta b){
@@ -72,18 +104,25 @@ bool operator > (TCarta a, TCarta b){
     return a.naipe*10+a.valor > b.naipe*10+b.valor;
 }
 
-template <typename TIPO, int MAX>
-void ordenar_cartas_bubble(TLista<TIPO,MAX> &lista){//Bubble Sort
+template <typename TIPO>
+void ordenar_cartas_bubble(TLista<TIPO> &lista){//Bubble Sort
     int i,j;
-    for(i=0;i<lista.quantidade;i++){
-        for(j=0;j<lista.quantidade;j++){
-            if(lista.elemento[i].dado < lista.elemento[j].dado){
-                swap(lista.elemento[i].dado,lista.elemento[j].dado);
+    int qtd_lista = qtd(lista);
+    TElemento<TIPO> *nave1 = lista.inicio;
+    TElemento<TIPO> *nave2 = lista.inicio;
+    for(i=0;i<qtd_lista;i++){
+        for(j=0;j<qtd_lista;j++){
+            if(nave1->dado < nave2->dado){
+                swap(nave1->dado,nave2->dado);
             }
+            nave2=nave2->prox;
         }
+        nave2 = lista.inicio;
+        nave1 = nave1->prox;
     }
 }
 
+/*
 template <typename TIPO, int MAX>
 void ordenar_cartas_quick(TLista<TIPO,MAX> &lista,int first, int last){//Quick Sort
     int i, j, pivot;
@@ -105,5 +144,5 @@ void ordenar_cartas_quick(TLista<TIPO,MAX> &lista,int first, int last){//Quick S
         ordenar_cartas_quick(lista,j+1,last);
     }
 }
-
+*/
 #endif // POKER_H_INCLUDED
