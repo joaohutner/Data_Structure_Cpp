@@ -52,7 +52,7 @@ bool embaralhar(TLista<TIPO> &lista){
             for(int j=0;j<(rand()%(tam-1));j++){
                 troca->prox;
             }
-            swap(nave.dado,troca.dado);
+            swap(nave->dado,troca->dado);
             troca = lista.inicio;
             nave = nave->prox;
         }

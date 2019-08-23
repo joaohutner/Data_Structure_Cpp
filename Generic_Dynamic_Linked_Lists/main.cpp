@@ -9,6 +9,11 @@ int main(){
   inicializa_lista(baralho);
   monta_baralho(baralho);
   imprime_generico(baralho);
+  embaralhar(baralho);
+  cout<<"Depois de embaralhar";
+  imprime_generico(baralho);
+  TLista<TCarta> jogador;
+  inicializa_lista(jogador);
   
 
 
