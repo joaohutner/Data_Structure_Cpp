@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.h": "cpp",
         "array": "cpp",
         "*.tcc": "cpp",
         "string": "cpp",
@@ -14,6 +15,7 @@
         "sstream": "cpp",
         "streambuf": "cpp",
         "functional": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "iostream": "cpp"
     }
 }

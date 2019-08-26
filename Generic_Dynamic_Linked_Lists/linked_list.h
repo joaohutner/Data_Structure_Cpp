@@ -15,7 +15,7 @@ struct TLista{
 template <typename TIPO>
 void inicializa_lista(TLista <TIPO> &lista){
   lista.inicio = NULL;
-};
+}
 
 template<typename TIPO>
 TElemento<TIPO> * novo_elemento_lista(TIPO dado){ //retorno do tipo TElemento
@@ -55,19 +55,18 @@ bool insere_fim(TLista <TIPO> &lista, TIPO dado){
 template <typename TIPO>
 bool remove_final(TLista<TIPO> &lista){
   if(lista.inicio == NULL){
+    cout<<"\nSem elementos na lista.\n";
     return false;
   }
   else{
-    TElemento <TIPO> *primeiro;
-    primeiro = lista.inicio;
+    TElemento <TIPO> *primeiro = lista.inicio;
     if(primeiro->prox==NULL){
-      primeiro->prox = NULL;
       delete primeiro;
+      lista.inicio = NULL;
       return true;
     }
     else{
-      TElemento <TIPO> *segundo;
-      segundo = lista.inicio->prox;
+      TElemento <TIPO> *segundo = lista.inicio->prox;
       while(segundo->prox != NULL){
       primeiro=primeiro->prox;
       segundo=segundo->prox;
@@ -83,7 +82,7 @@ bool remove_final(TLista<TIPO> &lista){
 
 template <typename TIPO>
 int qtd(TLista<TIPO> &lista){
-  if(lista.inicio->prox== NULL){
+  if(lista.inicio== NULL){
     return 0;
   }
   else{
@@ -101,6 +100,7 @@ int qtd(TLista<TIPO> &lista){
 template <typename TIPO>
 bool remove_inicio(TLista<TIPO> &lista){
   if(lista.inicio== NULL){
+    cout<<"\nSem elementos na lista.\n";
     return false; //não tem item na lista
   }
   else if(lista.inicio!=NULL){
@@ -109,6 +109,9 @@ bool remove_inicio(TLista<TIPO> &lista){
     delete lista.inicio;
     lista.inicio = aux;
     return true;
+  }
+  else{
+    return false;
   }
 }
 
@@ -123,7 +126,7 @@ bool insere_inicio(TLista<TIPO> &lista, TIPO dado){
 template<typename TIPO>
 bool remove_posicao(TLista<TIPO> &lista, int p){
   if(lista.inicio == NULL){
-    cout<<"\nSem itens na lista\n";
+    cout<<"\nSem elementos na lista.\n";
     return false;
   }
   else if(lista.inicio =! NULL){
@@ -180,7 +183,7 @@ bool insere_posicao(TLista<TIPO> &lista, int p, TIPO dado){
   }
   else{
     TElemento<TIPO> *tras = lista.inicio;
-    TElemento<TIPO> *frente = lista.inicio->proximo;
+    TElemento<TIPO> *frente = lista.inicio->prox;
     int contador = 0;
     while(tam=!contador){
       frente = frente->prox;

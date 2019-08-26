@@ -49,8 +49,9 @@ bool embaralhar(TLista<TIPO> &lista){
     }
     else{
         for(int i=0;i<tam;i++){
-            for(int j=0;j<(rand()%(tam-1));j++){
-                troca->prox;
+            int rando = rand()%(tam-1);
+            for(int j=0;j<rando;j++){
+                troca = troca->prox;
             }
             swap(nave->dado,troca->dado);
             troca = lista.inicio;
@@ -78,18 +79,20 @@ bool distribuir_cartas(TLista<TIPO> &origem, TLista<TIPO> &destino, int quantas)
 
 template <typename TIPO>
 bool imprime_generico(TLista<TIPO> &lista){
-    int qtd_imprime = qtd(lista);
-    TElemento<TIPO> *nave = lista.inicio;
     if(lista.inicio == NULL){
         cout<<"\nVoce nao possui itens na lista!\n";
         return 0;
     }
-    for(int i=0;i<qtd_imprime;i++){
-        imprime_carta(nave->dado);
-        cout<<endl;
-        nave = nave->prox;
+    else{
+        int qtd_imprime = qtd(lista);
+        TElemento<TIPO> *nave = lista.inicio;
+        for(int i=0;i<qtd_imprime;i++){
+            imprime_carta(nave->dado);
+            cout<<endl;
+            nave = nave->prox;
+        }
+        return 1;
     }
-    return 1;
 }
 
 bool operator < (TCarta a, TCarta b){
