@@ -1,7 +1,7 @@
 #ifndef POKER_H_INCLUDED
 #define POKER_H_INCLUDED
 #include <string.h>
-#include <time.h> 
+#include <time.h>
 
 
 struct TCarta{
