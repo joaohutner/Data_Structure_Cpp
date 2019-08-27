@@ -4,7 +4,21 @@ using namespace std;
 #include "poker.h"
 
 int main(){
-  TLista<TCarta> jogador;
+  TLista<TCarta> baralho;
+  inicializa_lista(baralho);
+  monta_baralho(baralho);
+  embaralhar(baralho);
+  imprime_generico(baralho);
+  cout<<"Organizando! ";
+  ordenar_cartas_quick(baralho,0,qtd(baralho)-1);
+  imprime_generico(baralho);
+
+
+  cout<<qtd(baralho);
+
+
+
+  /*TLista<TCarta> jogador;
   inicializa_lista(jogador);
   cout<<"\nCartas jogador:\n";
   TCarta dado;
@@ -44,16 +58,7 @@ int main(){
   cout<<"\nInserindo:\n";
   insere_posicao(jogador,3,dado);
   imprime_generico(jogador);
-
-
-
-
-  
-
-
-
-
-
+  */
 
 
   return 1;

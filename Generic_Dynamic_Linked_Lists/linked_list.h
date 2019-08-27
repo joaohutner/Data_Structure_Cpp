@@ -200,4 +200,26 @@ bool insere_posicao(TLista<TIPO> &lista, int p, TIPO dado){
   }
 }
 
+template<typename TIPO>
+TElemento<TIPO>* elem_na_posi(TLista<TIPO> &lista,int p){
+  int tam = qtd(lista);
+  if(p>=tam){
+    cout<<"\nEssa posicao nao existe!\n";
+    return NULL;
+  }
+  else if(p<0){
+    cout<<"\nEssa posicao nao existe!\n";
+    return NULL;
+  }
+  else{
+    int aux = 0;
+    TElemento<TIPO> *nave = lista.inicio;
+    while(aux<p){
+      aux++;
+      nave = nave->prox;
+    }
+    return nave;
+  }
+}
+
 #endif // LINKED_LIST_H_INCLUDED
