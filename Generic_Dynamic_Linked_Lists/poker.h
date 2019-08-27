@@ -126,18 +126,22 @@ void ordenar_cartas_bubble(TLista<TIPO> &lista){//Bubble Sort
 }
 
 /*
-template <typename TIPO, int MAX>
-void ordenar_cartas_quick(TLista<TIPO,MAX> &lista,int first, int last){//Quick Sort
+template <typename TIPO>
+void ordenar_cartas_quick(TLista<TIPO> &lista,int first, int last){//Quick Sort
     int i, j, pivot;
+    TElemento<TIPO> *i = lista.inicio;
+    TElemento<TIPO> *j = lista.inicio;
     if(first<last){
         pivot=first;
         i=first;
         j=last;
         while(i<j){
-            while(lista.elemento[i].dado<=lista.elemento[pivot].dado&&i<last)
+            while(lista.elemento[i].dado<=lista.elemento[pivot].dado&&i<last){
                 i++;
-            while(lista.elemento[j].dado>lista.elemento[pivot].dado)
+            }
+            while(lista.elemento[j].dado>lista.elemento[pivot].dado){
                 j--;
+            }
             if(i<j){
                 swap(lista.elemento[i].dado,lista.elemento[j].dado);
             }

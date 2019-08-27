@@ -129,30 +129,33 @@ bool remove_posicao(TLista<TIPO> &lista, int p){
     cout<<"\nSem elementos na lista.\n";
     return false;
   }
-  else if(lista.inicio =! NULL){
+  else if(lista.inicio != NULL){
     int tam = qtd(lista);
-    if(p>tam){
+    if(p>tam-1){
       cout<<"\nEssa posicao nao existe\n";
       return false;
     }
+    else if(p==0){
+      TElemento <TIPO> *aux;
+      aux = lista.inicio->prox;
+      delete lista.inicio;
+      lista.inicio = aux;
+      return true;
+    }
     else{
       TElemento<TIPO> *tras = lista.inicio;
-      TElemento<TIPO> *frente = lista.inicio->proximo;
+      TElemento<TIPO> *frente = lista.inicio->prox;
       int contador = 0;
-      while(tam!=contador){
+      while(p-1>contador){
         frente = frente->prox;
         tras = tras->prox;
         contador++;
       }
-      TElemento<TIPO> *aux = tras->prox;
+      TElemento<TIPO> *aux = 
       tras->prox = frente->prox;
-      delete aux;
+      delete frente;
+      return true;
     }
-    return true;
-  }
-  else{
-    cout<<"\nNao foi possivel achar o item";
-    return false;
   }
 }
 

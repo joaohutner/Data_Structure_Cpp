@@ -35,6 +35,16 @@ int main(){
   insere_posicao(jogador,1,dado);
   cout<<"\nInserindo:\n";
   imprime_generico(jogador);
+  cout<<"Removendo: \n";
+  remove_posicao(jogador,3);
+  imprime_generico(jogador);
+  cout<<"Removendo: \n";
+  remove_posicao(jogador,2);
+  imprime_generico(jogador);
+  cout<<"\nInserindo:\n";
+  insere_posicao(jogador,3,dado);
+  imprime_generico(jogador);
+
 
 
 
