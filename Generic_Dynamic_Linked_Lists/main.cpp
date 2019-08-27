@@ -9,13 +9,9 @@ int main(){
   monta_baralho(baralho);
   embaralhar(baralho);
   imprime_generico(baralho);
-  cout<<"Organizando! ";
+  cout<<"Organizando!"<<endl<<endl;
   ordenar_cartas_quick(baralho,0,qtd(baralho)-1);
   imprime_generico(baralho);
-
-
-  cout<<qtd(baralho);
-
 
 
   /*TLista<TCarta> jogador;

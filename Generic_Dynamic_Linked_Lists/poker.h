@@ -124,41 +124,34 @@ void ordenar_cartas_bubble(TLista<TIPO> &lista){//Bubble Sort
         nave1 = nave1->prox;
     }
 }
-template<typename TIPO>
-void ordenar_cartas_bubble(TLista<TIPO> &lista, int first, int last){   
-}
 
-/*
 template <typename TIPO>
 void ordenar_cartas_quick(TLista<TIPO> &lista,int first, int last){//Quick Sort
-    int i,j,pivot;
-    TElemento<TIPO> *i_ele = elem_na_posi(lista,i);
-    TElemento<TIPO> *j_ele = elem_na_posi(lista,j);
-    TElemento<TIPO> *p_ele = elem_na_posi(lista,pivot);
+    int i, j, pivot;
     if(first<last){
-        p_ele = elem_na_posi(lista,first);
-        i_ele = elem_na_posi(lista,first);
-        j_ele = elem_na_posi(lista,last);
-        i = first;
-        j = last;
-        pivot = first;
-        while(i_ele->dado<j_ele->dado){
-            while((i_ele->dado<=j_ele->dado)&&i<last);//lista.elemento[i].dado<=lista.elemento[pivot].dado&&i<last)
+        pivot=first;
+        i=first;
+        j=last;
+        TElemento<TIPO> *Ele_p = elem_na_posi(lista,pivot);
+        TElemento<TIPO> *Ele_i = elem_na_posi(lista,i);
+        TElemento<TIPO> *Ele_j = elem_na_posi(lista,j);
+        while(i<j){
+            while(Ele_i->dado<=Ele_p->dado&&i<last){//lista.elemento[i].dado<=lista.elemento[pivot].dado&&i<last){
                 i++;
-                i_ele = elem_na_posi(lista,i);
-            while(j_ele->dado > p_ele->dado);//lista.elemento[j].dado>lista.elemento[pivot].dado)
+                Ele_i = elem_na_posi(lista,i);
+            }
+            while(Ele_j->dado>Ele_p->dado){//lista.elemento[j].dado>lista.elemento[pivot].dado){
                 j--;
-                j_ele = elem_na_posi(lista,j);
-            if(i_ele->dado<j_ele->dado){
-                swap(i_ele->dado,j_ele->dado);//lista.elemento[i].dado,lista.elemento[j].dado);
+                Ele_j = elem_na_posi(lista,j);
+            }
+            if(i<j){
+                swap(Ele_i->dado,Ele_j->dado);//lista.elemento[i].dado,lista.elemento[j].dado);
             }
         }
-        swap(p_ele->dado,j_ele->dado);//lista.elemento[pivot].dado,lista.elemento[j].dado);
+        swap(Ele_p->dado,Ele_j->dado);//lista.elemento[pivot].dado,lista.elemento[j].dado);
         ordenar_cartas_quick(lista,first,j-1);
         ordenar_cartas_quick(lista,j+1,last);
     }
 }
-*/
-
 
 #endif // POKER_H_INCLUDED
