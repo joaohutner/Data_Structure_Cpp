@@ -3,8 +3,6 @@ using namespace std;
 #include "doubly_list.h"
 #include "poker.h"
 
-int main{
-
-    
+int main(){
     return 0;
 }

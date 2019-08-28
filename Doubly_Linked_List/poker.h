@@ -154,6 +154,3 @@ void ordenar_cartas_quick(TLista<TIPO> &lista,int first, int last){//Quick Sort
 }
 
 #endif // POKER_H_INCLUDED
-
-
-#endif // POKER_H_INCLUDED
