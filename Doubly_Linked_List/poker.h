@@ -106,6 +106,8 @@ bool operator > (TCarta a, TCarta b){
     return a.naipe*10+a.valor > b.naipe*10+b.valor;
 }
 
+//Vai mudar:
+
 template <typename TIPO>
 void ordenar_cartas_bubble(TLista<TIPO> &lista){//Bubble Sort
     int i,j;
@@ -135,19 +137,19 @@ void ordenar_cartas_quick(TLista<TIPO> &lista,int first, int last){//Quick Sort
         TElemento<TIPO> *Ele_i = elem_na_posi(lista,i);
         TElemento<TIPO> *Ele_j = elem_na_posi(lista,j);
         while(i<j){
-            while(Ele_i->dado<=Ele_p->dado&&i<last){//lista.elemento[i].dado<=lista.elemento[pivot].dado&&i<last){
+            while(Ele_i->dado<=Ele_p->dado&&i<last){    //lista.elemento[i].dado<=lista.elemento[pivot].dado&&i<last){
                 i++;
                 Ele_i = elem_na_posi(lista,i);
             }
-            while(Ele_j->dado>Ele_p->dado){//lista.elemento[j].dado>lista.elemento[pivot].dado){
+            while(Ele_j->dado>Ele_p->dado){ //lista.elemento[j].dado>lista.elemento[pivot].dado){
                 j--;
                 Ele_j = elem_na_posi(lista,j);
             }
             if(i<j){
-                swap(Ele_i->dado,Ele_j->dado);//lista.elemento[i].dado,lista.elemento[j].dado);
+                swap(Ele_i->dado,Ele_j->dado);  //lista.elemento[i].dado,lista.elemento[j].dado);
             }
         }
-        swap(Ele_p->dado,Ele_j->dado);//lista.elemento[pivot].dado,lista.elemento[j].dado);
+        swap(Ele_p->dado,Ele_j->dado);  //lista.elemento[pivot].dado,lista.elemento[j].dado);
         ordenar_cartas_quick(lista,first,j-1);
         ordenar_cartas_quick(lista,j+1,last);
     }
