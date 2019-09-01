@@ -112,21 +112,11 @@ bool insere_posicao(TLista<TIPO> &lista, int p, TIPO dado){
   int tam = qtd(lista);
   if(p == 0){
     bool confere = insere_inicio(lista,dado);
-    if(confere==true){
-      return true;
-    }
-    else{
-      return false;
-    }
+    return confere;
   }
   else if(p == tam){
     bool confere2 = insere_fim(lista,dado);
-    if(confere2==true){
-      return true;
-    }
-    else{
-      return false;
-    }
+    return confere2;
   }
   else if(p>tam || p<0){
     cout<<"\nPosicao inexistente\n";

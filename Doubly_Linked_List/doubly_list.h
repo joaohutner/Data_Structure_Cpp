@@ -32,7 +32,19 @@ TElemento<TIPO> * novo_elemento_lista(TIPO dado){//Meu retorno é um ponteiro ti
 
 template <typename TIPO>
 int qtd(TLista<TIPO> &lista){
-    continue;
+    if(lista.inicio == NULL){
+        return 0;
+    }
+    else{
+        TElemento <TIPO> *busca;
+        busca = lista.inicio;
+        int contador = 1;
+        while(busca->prox != NULL){
+        contador++;
+        busca=busca->prox;
+        }
+    return contador;
+  }
 }
 
 template<typename TIPO>
@@ -50,32 +62,154 @@ void inicializa_doubly(TLista<TIPO> &lista){
 
 template <typename TIPO>
 bool insere_inicio(TLista<TIPO> &lista, TIPO dado){
-    continue
+    if(lista.inicio == NULL){
+        TElemento<TIPO> *novo = novo_elemento_lista(dado);
+        lista.inicio = novo;
+        lista.fim = novo;
+        novo->prox = NULL;
+        novo->ant = NULL;
+    }
+    else{
+        TElemento<TIPO> *novo = novo_elemento_lista(dado);
+        TElemento<TIPO> *aux = lista.inicio;
+        novo->prox = aux;
+        aux->ant = novo;
+        lista.inicio = novo;
+        novo->ant = NULL;
+    }
+    
 }
 
 template <typename TIPO>
 bool insere_fim(TLista <TIPO> &lista, TIPO dado){
-    continue;
+    if(lista.inicio == NULL){
+        TElemento<TIPO> *novo = novo_elemento_lista(dado);
+        lista.inicio = novo;
+        lista.fim = novo;
+        novo->prox = NULL;
+        novo->ant = NULL;
+    }
+    else{
+        TElemento<TIPO> *novo = novo_elemento_lista(dado);
+        TElemento<TIPO> *aux = lista.fim;
+        lista.fim = novo;
+        novo->ant = aux;
+        aux->prox = novo;
+        novo->prox = NULL;
+
+    }
+    
 }
 
-template <typename TIPO>
-bool insere_posicao(TLista<TIPO> &lista,int p, TIPO dado){
-    continue;
+template<typename TIPO>
+bool insere_posicao(TLista<TIPO> &lista, int p, TIPO dado){
+  int tam = qtd(lista);
+  if(p == 0){
+    bool confere = insere_inicio(lista,dado);
+    return confere;
+  }
+  else if(p == tam){
+    bool confere2 = insere_fim(lista,dado);
+    return confere2;
+  }
+  else if(p>tam || p<0){
+    cout<<"\nPosicao inexistente\n";
+    return false;
+  }
+  else{
+    
+    
+    /*
+    TElemento<TIPO> *tras = lista.inicio;
+    TElemento<TIPO> *frente = lista.inicio->prox;
+    int contador = 0;
+    while(tam=!contador){
+      frente = frente->prox;
+      tras = tras->prox;
+      contador++;
+    }
+    TElemento<TIPO> *novo = novo_elemento_lista(dado);
+    novo->prox = tras->prox;
+    tras->prox = novo;
+    return true;*/
+  }
 }
 
 template <typename TIPO>
 bool remove_inicio(TLista<TIPO> &lista){
-    continue
+    if(lista.inicio== NULL){
+        cout<<"\nSem elementos na lista.\n";
+        return false; //não tem item na lista
+    }
+    else if(lista.inicio == lista.fim){
+        delete lista.inicio;
+        lista.inicio = NULL;
+        lista.fim = NULL
+    }
+    else{
+        TElemento <TIPO> *aux = lista.inicio->prox;
+        delete lista.inicio;
+        lista.inicio = aux;
+        aux->ant = NULL;
+        return true;
+    }
 }
 
 template <typename TIPO>
-bool remove_fim(TLista<TIPO> &lista){
-    continue;
+bool remove_final(TLista<TIPO> &lista){
+    if(lista.inicio == NULL){
+        cout<<"\nSem elementos na lista.\n";
+        return false;
+    }
+    else if(lista.inicio == lista.fim){
+        delete lista.inicio;
+        lista.inicio = NULL;
+        lista.fim = NULL
+    }
+    else{
+        TElemento <TIPO> *aux = lista.fim->ant;
+        delete lista.fim;
+        lista.fim = aux;
+        aux->prox = NULL;
+        return true;
+    }
 }
 
-template <typename TIPO>
+template<typename TIPO>
 bool remove_posicao(TLista<TIPO> &lista, int p){
-    continue;
+    if(lista.inicio == NULL){
+        cout<<"\nSem elementos na lista.\n";
+        return false;
+    }
+    else if(lista.inicio != NULL){
+        int tam = qtd(lista);
+        if(p>tam-1){
+            cout<<"\nEssa posicao nao existe\n";
+            return false;
+        }
+        else if(p==0){
+            bool confere = remove_inicio(lista);
+            return confere;
+        }
+        else if(p==tam){
+            bool confere2 = remove_final(lista);
+            return confere2;
+        }
+        else{
+            int contador = 0;
+            TElemento<TIPO> *aux = lista.inicio;
+            while(p>contador){
+                contador++;
+                aux = aux->prox;
+            }
+            TElemento<TIPO> *pos_ant = aux->ant;
+            TElemento<TIPO> *pos_prox = aux->prox;
+            pos_ant->prox = pos_prox;
+            pos_prox->ant = pos_ant;
+            delete aux;
+            return true;
+        }
+    }
 }
 
 
