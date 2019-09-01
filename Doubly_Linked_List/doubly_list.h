@@ -49,7 +49,30 @@ int qtd(TLista<TIPO> &lista){
 
 template<typename TIPO>
 TElemento<TIPO>* elem_na_posi(TLista<TIPO> &lista,int p){
-    continue;
+  int tam = qtd(lista);
+  if(p>=tam){
+    cout<<"\nEssa posicao nao existe!\n";
+    return NULL;
+  }
+  else if(p<0){
+    cout<<"\nEssa posicao nao existe!\n";
+    return NULL;
+  }
+  else if(p==0){
+      return lista.inicio;
+  }
+  else if(p==tam-1){
+      return lista.fim;
+  }
+  else{
+    int aux = 0;
+    TElemento<TIPO> *nave = lista.inicio;
+    while(aux<p){
+      aux++;
+      nave = nave->prox;
+    }
+    return nave;
+  }
 }
 //
 //Fim funções auxiliares
@@ -68,6 +91,7 @@ bool insere_inicio(TLista<TIPO> &lista, TIPO dado){
         lista.fim = novo;
         novo->prox = NULL;
         novo->ant = NULL;
+        return true;
     }
     else{
         TElemento<TIPO> *novo = novo_elemento_lista(dado);
@@ -76,8 +100,8 @@ bool insere_inicio(TLista<TIPO> &lista, TIPO dado){
         aux->ant = novo;
         lista.inicio = novo;
         novo->ant = NULL;
+        return true;
     }
-    
 }
 
 template <typename TIPO>
@@ -88,6 +112,7 @@ bool insere_fim(TLista <TIPO> &lista, TIPO dado){
         lista.fim = novo;
         novo->prox = NULL;
         novo->ant = NULL;
+        return true;
     }
     else{
         TElemento<TIPO> *novo = novo_elemento_lista(dado);
@@ -96,7 +121,7 @@ bool insere_fim(TLista <TIPO> &lista, TIPO dado){
         novo->ant = aux;
         aux->prox = novo;
         novo->prox = NULL;
-
+        return true;
     }
     
 }
@@ -117,21 +142,28 @@ bool insere_posicao(TLista<TIPO> &lista, int p, TIPO dado){
     return false;
   }
   else{
-    
-    
-    /*
-    TElemento<TIPO> *tras = lista.inicio;
-    TElemento<TIPO> *frente = lista.inicio->prox;
-    int contador = 0;
-    while(tam=!contador){
-      frente = frente->prox;
-      tras = tras->prox;
-      contador++;
-    }
-    TElemento<TIPO> *novo = novo_elemento_lista(dado);
-    novo->prox = tras->prox;
-    tras->prox = novo;
-    return true;*/
+      TElemento<TIPO> *aux = lista.inicio;
+      int contador = 0;
+      while(p>contador){
+          contador++;
+          aux = aux->prox;
+      }
+      TElemento<TIPO> *novo = novo_elemento_lista(dado);
+      //
+      /*
+      TElemento<TIPO> *aux_prox = aux->prox;
+      TElemento<TIPO> *aux_depois = aux->prox->ant;
+      aux->prox = novo;
+      aux_depois->ant = novo;
+      novo->ant = aux_prox;
+      novo->prox = aux_depois;
+      */
+      //
+      novo->prox = aux->prox;
+      novo->ant = aux;
+      aux->prox->ant = novo;
+      aux->prox = novo;
+      return true;
   }
 }
 
@@ -144,7 +176,8 @@ bool remove_inicio(TLista<TIPO> &lista){
     else if(lista.inicio == lista.fim){
         delete lista.inicio;
         lista.inicio = NULL;
-        lista.fim = NULL
+        lista.fim = NULL;
+        return true;
     }
     else{
         TElemento <TIPO> *aux = lista.inicio->prox;
@@ -164,7 +197,8 @@ bool remove_final(TLista<TIPO> &lista){
     else if(lista.inicio == lista.fim){
         delete lista.inicio;
         lista.inicio = NULL;
-        lista.fim = NULL
+        lista.fim = NULL;
+        return true;
     }
     else{
         TElemento <TIPO> *aux = lista.fim->ant;
@@ -176,7 +210,7 @@ bool remove_final(TLista<TIPO> &lista){
 }
 
 template<typename TIPO>
-bool remove_posicao(TLista<TIPO> &lista, int p){
+bool remove_posicao(TLista<TIPO> &lista, int p){       ///////// COM PROBLEMAS!
     if(lista.inicio == NULL){
         cout<<"\nSem elementos na lista.\n";
         return false;
@@ -210,12 +244,9 @@ bool remove_posicao(TLista<TIPO> &lista, int p){
             return true;
         }
     }
+    else{
+        return false;
+    }
 }
-
-
-
-
-
-
 
 #endif // DOUBLY_LIST_H_INCLUDED
