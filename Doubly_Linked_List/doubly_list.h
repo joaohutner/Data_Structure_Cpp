@@ -126,7 +126,7 @@ bool insere_fim(TLista <TIPO> &lista, TIPO dado){
     
 }
 
-template<typename TIPO>
+template<typename TIPO>                     ///////// COM PROBLEMAS!
 bool insere_posicao(TLista<TIPO> &lista, int p, TIPO dado){
   int tam = qtd(lista);
   if(p == 0){
@@ -144,21 +144,11 @@ bool insere_posicao(TLista<TIPO> &lista, int p, TIPO dado){
   else{
       TElemento<TIPO> *aux = lista.inicio;
       int contador = 0;
-      while(p>contador){
+      while(p>contador-1){
           contador++;
           aux = aux->prox;
       }
       TElemento<TIPO> *novo = novo_elemento_lista(dado);
-      //
-      /*
-      TElemento<TIPO> *aux_prox = aux->prox;
-      TElemento<TIPO> *aux_depois = aux->prox->ant;
-      aux->prox = novo;
-      aux_depois->ant = novo;
-      novo->ant = aux_prox;
-      novo->prox = aux_depois;
-      */
-      //
       novo->prox = aux->prox;
       novo->ant = aux;
       aux->prox->ant = novo;
@@ -225,7 +215,7 @@ bool remove_posicao(TLista<TIPO> &lista, int p){       ///////// COM PROBLEMAS!
             bool confere = remove_inicio(lista);
             return confere;
         }
-        else if(p==tam){
+        else if(p==tam-1){
             bool confere2 = remove_final(lista);
             return confere2;
         }
@@ -245,6 +235,7 @@ bool remove_posicao(TLista<TIPO> &lista, int p){       ///////// COM PROBLEMAS!
         }
     }
     else{
+        printf("\nErro remove_posicao\n");
         return false;
     }
 }

@@ -126,7 +126,7 @@ bool insere_posicao(TLista<TIPO> &lista, int p, TIPO dado){
     TElemento<TIPO> *tras = lista.inicio;
     TElemento<TIPO> *frente = lista.inicio->prox;
     int contador = 0;
-    while(tam=!contador){
+    while(tam=!contador-1){
       frente = frente->prox;
       tras = tras->prox;
       contador++;
@@ -201,6 +201,10 @@ bool remove_posicao(TLista<TIPO> &lista, int p){
       lista.inicio = aux;
       return true;
     }
+    else if(p==tam-1){
+      bool confere = remove_final(lista);
+      return confere;
+    }
     else{
       TElemento<TIPO> *tras = lista.inicio;
       TElemento<TIPO> *frente = lista.inicio->prox;
@@ -210,11 +214,14 @@ bool remove_posicao(TLista<TIPO> &lista, int p){
         tras = tras->prox;
         contador++;
       }
-      TElemento<TIPO> *aux = 
       tras->prox = frente->prox;
       delete frente;
       return true;
     }
+  }
+  else{
+    cout<<"\nErro remove_posicao\n";
+    return false;
   }
 }
 

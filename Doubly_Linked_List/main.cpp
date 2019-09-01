@@ -27,27 +27,45 @@ int main(){
   TCarta dado3;
   dado3.naipe = 0;
   dado3.valor = 3;
-  cout<<"\nInserindo varios no inicio!\n";
+
+  cout<<"\nInserindo 3 no inicio!\n";
   insere_inicio(jogador,dado);
   insere_inicio(jogador,dado2);
   insere_inicio(jogador,dado3);
   imprime_generico(jogador);
+
   cout<<"\nRemovendo 1 no Fim: \n";
   remove_final(jogador);
-  //imprime_generico(jogador);
-  //remove_inicio(jogador);
   imprime_generico(jogador);
+
   cout<<"\nRemovendo 1 no Inicio: \n";
   remove_inicio(jogador);
   imprime_generico(jogador);
+
   cout<<"\nInserindo 1 no inicio e 1 no fim!: \n";
   insere_inicio(jogador,dado);
   insere_fim(jogador,dado3);
   imprime_generico(jogador);
 
-  cout<<"\nInserindo na posicao 1:\n";
-  insere_posicao(jogador,1,dado);
+  cout<<"\nInserindo na posicao 0:\n";
+  insere_posicao(jogador,1,dado2);
   imprime_generico(jogador);
+
+  cout<<"\nInserindo na posicao 4:\n";
+  insere_posicao(jogador,4,dado);
+  imprime_generico(jogador);
+
+  cout<<"\nInserindo no final\n";
+  insere_fim(jogador,dado2);
+  imprime_generico(jogador);
+
+  cout<<"\nRemovendo do final\n";
+  remove_final(jogador);
+  imprime_generico(jogador);
+
+
+
+  /*
   cout<<"E ai";
   cout<<"\nRemovendo da posicao 2: \n";
   remove_posicao(jogador,2);
