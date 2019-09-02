@@ -144,34 +144,32 @@ bool insere_posicao(TLista<TIPO> &lista, int p, TIPO dado){
         }
     }
     else if(lista.inicio != NULL){
-        int contador 0;
+        int contador = 0;
         TElemento<TIPO> *navega = lista.inicio;
-        while(navega->prox != NULL && contador<p){
+        while(navega->prox != NULL && contador<p-1){
         contador++;
         navega = navega->prox;
         }
         if(navega == NULL){
             cout<<endl<<"Posicao inexistente!"<<endl;
-            return false
+            return false;
         }
         else{
             TElemento<TIPO> *novo = novo_elemento_lista(dado);
-            TElemento<TIPO> *frente = navega->prox;
             novo->prox = navega->prox;
             novo->ant = navega;
-            aux->prox = novo;
-            frente->ant = novo;
-            /*
-            novo->prox = navega->prox;
-            novo->ant = navega;
-            navega->prox->ant = novo;
             navega->prox = novo;
-            */
             if(novo->prox == NULL){
                 lista.fim = novo;
             }
+            else{
+                navega->prox->ant = novo;
+            }
         return true;
         }
+    }
+    else{
+        return false;
     }
 }
 
@@ -240,7 +238,7 @@ bool remove_posicao(TLista<TIPO> &lista, int p){
         }
     }
     else if(lista.inicio != NULL){
-        int contador 0;
+        int contador = 0;
         TElemento<TIPO> *navega = lista.inicio;
         while(navega->prox != NULL && contador<p){
         contador++;
@@ -248,16 +246,23 @@ bool remove_posicao(TLista<TIPO> &lista, int p){
         }
         if(navega == NULL){
             cout<<endl<<"Posicao inexistente!"<<endl;
-            return false
+            return false;
         }
         else{
-            //E se for o ultimo item, oq fazer?
-            // LALALALA
-            navega->ant->prox = aux->prox;
-            navega->prox->ant = aux->ant;
+            navega->ant->prox = navega->prox;
+            if(navega->prox == NULL){
+                lista.fim = navega->ant;
+            }
+            else{
+                navega->prox->ant = navega->ant;
+            }
+            navega->ant->prox = navega->prox;
             delete navega;
             return true;
         }
+    }
+    else{
+        return false;
     }
 }
 
