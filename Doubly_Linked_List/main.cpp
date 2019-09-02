@@ -44,15 +44,15 @@ int main(){
 
   cout<<"\nInserindo 1 no inicio e 1 no fim!: \n";
   insere_inicio(jogador,dado);
-  insere_fim(jogador,dado3);
+  insere_fim(jogador,dado);
   imprime_generico(jogador);
 
-  cout<<"\nInserindo na posicao 0:\n";
-  insere_posicao(jogador,1,dado2);
+  cout<<"\nInserindo 3 na posicao 1:\n";
+  insere_posicao(jogador,1,dado3);
   imprime_generico(jogador);
 
-  cout<<"\nInserindo na posicao 4:\n";
-  insere_posicao(jogador,4,dado);
+  cout<<"\nInserindo 3 na posicao 4:\n";
+  insere_posicao(jogador,4,dado3);
   imprime_generico(jogador);
 
   cout<<"\nInserindo no final\n";
