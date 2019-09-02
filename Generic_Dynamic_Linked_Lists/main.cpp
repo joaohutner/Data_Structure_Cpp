@@ -62,5 +62,8 @@ int main(){
   insere_posicao(jogador,3,dado);
   imprime_generico(jogador);
   
+  cout<<"\nInserindo 2 na posicao 2:\n";
+  insere_posicao(jogador,2,dado2);
+  imprime_generico(jogador);
   return 1;
 }

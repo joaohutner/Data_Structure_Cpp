@@ -109,32 +109,42 @@ bool insere_fim(TLista <TIPO> &lista, TIPO dado){
 
 template<typename TIPO>
 bool insere_posicao(TLista<TIPO> &lista, int p, TIPO dado){
-  int tam = qtd(lista);
-  if(p == 0){
-    bool confere = insere_inicio(lista,dado);
-    return confere;
+  if(p==0){
+    if(lista.inicio == NULL){//sem itens na lista
+      TElemento<TIPO> *novo = novo_elemento_lista(dado);
+      lista.inicio = novo;
+      return true;
+    }
+    else{//lista com itens
+      TElemento<TIPO> *novo = novo_elemento_lista(dado);
+      TElemento<TIPO> *aux = lista.inicio;
+      novo->prox = aux;
+      lista.inicio = novo;
+      return true;
+    }
   }
-  else if(p == tam){
-    bool confere2 = insere_fim(lista,dado);
-    return confere2;
-  }
-  else if(p>tam || p<0){
-    cout<<"\nPosicao inexistente\n";
-    return false;
-  }
-  else{
+  else if(lista.inicio != NULL){
+    int contador = 0;
     TElemento<TIPO> *tras = lista.inicio;
     TElemento<TIPO> *frente = lista.inicio->prox;
-    int contador = 0;
-    while(tam=!contador-1){
-      frente = frente->prox;
-      tras = tras->prox;
+    while(tras->prox != NULL && contador<p-1){
       contador++;
+      tras = tras->prox;
+      frente = frente->prox;
     }
-    TElemento<TIPO> *novo = novo_elemento_lista(dado);
-    novo->prox = tras->prox;
-    tras->prox = novo;
-    return true;
+    if(tras==NULL){
+      cout<<endl<<"Posicao inexistente!"<<endl;
+      return false;
+    }
+    else{
+      TElemento<TIPO> *novo = novo_elemento_lista(dado);
+      novo->prox = tras->prox;
+      tras->prox = novo;
+      return true;
+    }
+  }
+  else{
+    return false;
   }
 }
 
@@ -184,43 +194,39 @@ bool remove_final(TLista<TIPO> &lista){
 
 template<typename TIPO>
 bool remove_posicao(TLista<TIPO> &lista, int p){
-  if(lista.inicio == NULL){
+  if(p==0){//remove inicio
+    if(lista.inicio == NULL){
     cout<<"\nSem elementos na lista.\n";
     return false;
-  }
-  else if(lista.inicio != NULL){
-    int tam = qtd(lista);
-    if(p>tam-1){
-      cout<<"\nEssa posicao nao existe\n";
-      return false;
     }
-    else if(p==0){
+    else{//remover primeiro item da lista
       TElemento <TIPO> *aux;
       aux = lista.inicio->prox;
       delete lista.inicio;
       lista.inicio = aux;
       return true;
     }
-    else if(p==tam-1){
-      bool confere = remove_final(lista);
-      return confere;
+  }
+  else if(lista.inicio != NULL){
+    int contador = 0;
+    TElemento<TIPO> *tras = lista.inicio;
+    TElemento<TIPO> *frente = lista.inicio->prox;
+    while(tras->prox != NULL && contador<p-1){ //p-1>contador
+      contador++;
+      tras = tras->prox;
+      frente = frente->prox;
+    }
+    if(tras==NULL){
+      cout<<endl<<"Posicao inexistente!"<<endl;
+      return false;
     }
     else{
-      TElemento<TIPO> *tras = lista.inicio;
-      TElemento<TIPO> *frente = lista.inicio->prox;
-      int contador = 0;
-      while(p-1>contador){
-        frente = frente->prox;
-        tras = tras->prox;
-        contador++;
-      }
       tras->prox = frente->prox;
       delete frente;
       return true;
     }
   }
   else{
-    cout<<"\nErro remove_posicao\n";
     return false;
   }
 }
