@@ -61,7 +61,7 @@ void remove_inicio(TLista<TIPO,MAX> &lista){
 }
 
 template <typename TIPO, int MAX>
-void insere_inicio(TLista<TIPO,MAX> &lista, TIPO dado){
+void insere_inicio(TLista<TIPO,MAX> &lista, TIPO dado){ //Bool sem o cout, nunca cout no TAD
     if(lista.quantidade < MAX){
         for(int i=lista.quantidade;i>0;i--){
             lista.elemento[i] = lista.elemento[i-1];
@@ -89,7 +89,7 @@ void remove_posicao(TLista<TIPO,MAX> &lista,int p){
     }
 }
 
-template <typename TIPO, int MAX>
+template <typename TIPO, int MAX> //for é condicional, evitar usar lista.quantidade
 void insere_posicao(TLista<TIPO,MAX> &lista,int p,TIPO dado){
     if((p<=lista.quantidade) && (lista.quantidade < MAX)){
         for(int i=lista.quantidade;i>p;i--){

@@ -82,7 +82,6 @@ bool insere_fim(TLista <TIPO> &lista, TIPO dado){
       busca=busca->prox;
     }
     if(busca->prox != NULL){
-      cout<<"\nProblema encontrado\n";
       return false;
     }
     else{
@@ -147,22 +146,18 @@ bool remove_inicio(TLista<TIPO> &lista){
     cout<<"\nSem elementos na lista.\n";
     return false; //não tem item na lista
   }
-  else if(lista.inicio!=NULL){
+  else){
     TElemento <TIPO> *aux;
     aux = lista.inicio->prox;
     delete lista.inicio;
     lista.inicio = aux;
     return true;
   }
-  else{
-    return false;
-  }
 }
 
 template <typename TIPO>
 bool remove_final(TLista<TIPO> &lista){
   if(lista.inicio == NULL){
-    cout<<"\nSem elementos na lista.\n";
     return false;
   }
   else{

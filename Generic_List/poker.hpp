@@ -74,7 +74,7 @@ bool operator > (TCarta a, TCarta b){
 }
 
 template <typename TIPO, int MAX>
-void ordenar_cartas_bubble(TLista<TIPO,MAX> &lista){//Bubble Sort
+void ordenar_cartas_bubble(TLista<TIPO,MAX> &lista){//Bubble Sort //Melhorar
     int i,j;
     for(i=0;i<lista.quantidade;i++){
         for(j=0;j<lista.quantidade;j++){

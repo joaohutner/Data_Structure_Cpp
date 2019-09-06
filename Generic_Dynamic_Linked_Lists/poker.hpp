@@ -108,7 +108,7 @@ bool operator > (TCarta a, TCarta b){
 }
 
 template <typename TIPO>
-void ordenar_cartas_bubble(TLista<TIPO> &lista){//Bubble Sort
+void ordenar_cartas_bubble(TLista<TIPO> &lista){//Bubble Sort //Arrumar 
     int i,j;
     int qtd_lista = qtd(lista);
     TElemento<TIPO> *nave1 = lista.inicio;
