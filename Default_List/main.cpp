@@ -1,8 +1,9 @@
 #include <iostream>
 #include <windows.h>
+using namespace std;
 #include "poker.hpp"
 #include "non_generic_list.hpp"
-using namespace std;
+
 
 int main()
 {
