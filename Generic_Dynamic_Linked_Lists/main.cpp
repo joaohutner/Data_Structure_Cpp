@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
-#include "linked_list.h"
-#include "poker.h"
+#include "linked_list.hpp"
+#include "poker.hpp"
 
 int main(){
   /*

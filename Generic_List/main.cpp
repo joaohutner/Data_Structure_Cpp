@@ -1,6 +1,6 @@
 #include <iostream>
-#include "generic_list.h"
-#include "poker.h"
+#include "generic_list.hpp"
+#include "poker.hpp"
 using namespace std;
 
 int main()

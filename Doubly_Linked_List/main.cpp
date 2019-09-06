@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
-#include "doubly_list.h"
-#include "poker.h"
+#include "doubly_list.hpp"
+#include "poker.hpp"
 
 int main(){
   /*

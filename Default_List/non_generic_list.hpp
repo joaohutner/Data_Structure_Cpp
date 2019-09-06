@@ -125,14 +125,14 @@ void imprime_baralho(TLista &lista){
 void ordenar_cartas_bubble(TLista &lista){//Bubble Sort
     int i,j;
     for(i=0;i<lista.tam_lista-1;i++){
-        for(j=1;j<lista.tam_lista;k++){
+        for(j=1;j<lista.tam_lista;j++){
             if(lista.elemento[i].naipe < lista.elemento[j].naipe){
                 swap(lista.elemento[i].naipe,lista.elemento[j].naipe);
             }
         }
     }
     for(i=0;i<lista.tam_lista-1;i++){
-        for(j=1;j<lista.tam_lista;k++){
+        for(j=1;j<lista.tam_lista;j++){
             if(lista.elemento[i].valor < lista.elemento[j].valor){
                 swap(lista.elemento[i].valor,lista.elemento[j].valor);
             }

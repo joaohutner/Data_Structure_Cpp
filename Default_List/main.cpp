@@ -1,7 +1,7 @@
 #include <iostream>
 #include <windows.h>
-#include "poker.h"
-#include "non_generic_list.h"
+#include "poker.hpp"
+#include "non_generic_list.hpp"
 using namespace std;
 
 int main()
