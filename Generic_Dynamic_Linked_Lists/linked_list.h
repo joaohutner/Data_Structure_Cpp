@@ -25,7 +25,6 @@ TElemento<TIPO> * novo_elemento_lista(TIPO dado){ //retorno do tipo TElemento
   novo->prox = NULL;
   return novo;
 }
-
 template <typename TIPO>
 int qtd(TLista<TIPO> &lista){
   if(lista.inicio== NULL){
@@ -42,28 +41,22 @@ int qtd(TLista<TIPO> &lista){
     return contador;
   }
 }
-
 template<typename TIPO>
 TElemento<TIPO>* elem_na_posi(TLista<TIPO> &lista,int p){
-  int tam = qtd(lista);
-  if(p>=tam){
-    cout<<"\nEssa posicao nao existe!\n";
-    return NULL;
-  }
-  else if(p<0){
-    cout<<"\nEssa posicao nao existe!\n";
-    return NULL;
+  if(lista.inicio == NULL){
+    return 0;
   }
   else{
-    int aux = 0;
-    TElemento<TIPO> *nave = lista.inicio;
-    while(aux<p){
-      aux++;
-      nave = nave->prox;
+    int contador = 0;
+    TElemento<TIPO> *navega = lista.inicio;
+    while(navega->prox != NULL && contador<p-1){
+      contador++;
+      navega = navega->prox;
     }
-    return nave;
+    return navega;
   }
 }
+
 //
 //Fim funções auxiliares
 //
@@ -132,7 +125,7 @@ bool insere_posicao(TLista<TIPO> &lista, int p, TIPO dado){
       tras = tras->prox;
       frente = frente->prox;
     }
-    if(tras==NULL){
+    if(contador<p-1 || tras==NULL){ //Terminamos o while e mesmo assim o contador não passou de posição-1, sabemos que a posição não existe.
       cout<<endl<<"Posicao inexistente!"<<endl;
       return false;
     }
@@ -211,12 +204,12 @@ bool remove_posicao(TLista<TIPO> &lista, int p){
     int contador = 0;
     TElemento<TIPO> *tras = lista.inicio;
     TElemento<TIPO> *frente = lista.inicio->prox;
-    while(tras->prox != NULL && contador<p-1){ //p-1>contador
+    while(frente->prox != NULL && contador<p-1){ //p-1>contador
       contador++;
       tras = tras->prox;
       frente = frente->prox;
     }
-    if(tras==NULL){
+    if(contador<p-1){ //Terminamos o while e mesmo assim o contador não passou de posição-1, sabemos que a posição não existe.
       cout<<endl<<"Posicao inexistente!"<<endl;
       return false;
     }

@@ -49,31 +49,20 @@ int qtd(TLista<TIPO> &lista){
 
 template<typename TIPO>
 TElemento<TIPO>* elem_na_posi(TLista<TIPO> &lista,int p){
-  int tam = qtd(lista);
-  if(p>=tam){
-    cout<<"\nEssa posicao nao existe!\n";
-    return NULL;
-  }
-  else if(p<0){
-    cout<<"\nEssa posicao nao existe!\n";
-    return NULL;
-  }
-  else if(p==0){
-      return lista.inicio;
-  }
-  else if(p==tam-1){
-      return lista.fim;
+  if(lista.inicio == NULL){
+    return 0;
   }
   else{
-    int aux = 0;
-    TElemento<TIPO> *nave = lista.inicio;
-    while(aux<p){
-      aux++;
-      nave = nave->prox;
+    int contador = 0;
+    TElemento<TIPO> *navega = lista.inicio;
+    while(navega->prox != NULL && contador<p-1){
+      contador++;
+      navega = navega->prox;
     }
-    return nave;
+    return navega;
   }
 }
+
 //
 //Fim funções auxiliares
 //
@@ -150,20 +139,24 @@ bool insere_posicao(TLista<TIPO> &lista, int p, TIPO dado){
         contador++;
         navega = navega->prox;
         }
-        if(navega == NULL){
+        if(contador<p-1 || navega==NULL){ //Terminamos o while e mesmo assim o contador não passou de posição-1, sabemos que a posição não existe.
             cout<<endl<<"Posicao inexistente!"<<endl;
             return false;
         }
         else{
             TElemento<TIPO> *novo = novo_elemento_lista(dado);
-            novo->prox = navega->prox;
-            novo->ant = navega;
-            navega->prox = novo;
-            if(novo->prox == NULL){
+            if(navega->prox == NULL){
+                navega->prox = novo;
+                novo->ant = navega;
+                novo->prox = NULL;
                 lista.fim = novo;
             }
             else{
-                navega->prox->ant = novo;
+                TElemento<TIPO> *frente = navega->prox;
+                navega->prox = novo;
+                novo->ant = navega;
+                novo->prox = frente;
+                frente->ant = novo;
             }
         return true;
         }
@@ -240,25 +233,28 @@ bool remove_posicao(TLista<TIPO> &lista, int p){
     else if(lista.inicio != NULL){
         int contador = 0;
         TElemento<TIPO> *navega = lista.inicio;
-        while(navega->prox != NULL && contador<p){
-        contador++;
-        navega = navega->prox;
+            while(navega->prox != NULL && contador<p){
+            contador++;
+            navega = navega->prox;
         }
-        if(navega == NULL){
+        if(contador<p || navega==NULL){ //Terminamos o while e mesmo assim o contador não passou de posição-1, sabemos que a posição não existe.
             cout<<endl<<"Posicao inexistente!"<<endl;
             return false;
         }
         else{
-            navega->ant->prox = navega->prox;
-            if(navega->prox == NULL){
-                lista.fim = navega->ant;
+            if(navega->prox == NULL){//ultimo elemento da lista
+                TElemento<TIPO> *aux  = navega->ant;
+                lista.fim = aux;
+                aux->prox = NULL;
+                delete navega;
+                return true;
             }
             else{
+                navega->ant->prox = navega->prox;
                 navega->prox->ant = navega->ant;
+                delete navega;
+                return true;
             }
-            navega->ant->prox = navega->prox;
-            delete navega;
-            return true;
         }
     }
     else{

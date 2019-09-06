@@ -4,13 +4,13 @@ using namespace std;
 #include "poker.h"
 
 int main(){
-    /*
+  /*
   TLista<TCarta> baralho;
   inicializa_doubly(baralho);
   monta_baralho(baralho);
   embaralhar(baralho);
   imprime_generico(baralho);
-  cout<<"Organizando!"<<endl<<endl;
+  cout<<"\n\n\nOrganizando!\n\n\n"<<endl<<endl;
   ordenar_cartas_quick(baralho,0,qtd(baralho)-1);
   imprime_generico(baralho);
     */
@@ -63,6 +63,18 @@ int main(){
   remove_final(jogador);
   imprime_generico(jogador);
 
+  cout<<"\nInserindo 2 na posicao 4:\n";
+  insere_posicao(jogador,4,dado2);
+  imprime_generico(jogador);
+
+  cout<<"\nRemovendo da posicao 4: \n";
+  remove_posicao(jogador,4);
+  imprime_generico(jogador);
+
+  cout<<"\nRemovendo da posicao 2: \n";
+  remove_posicao(jogador,2);
+  imprime_generico(jogador);
+
   cout<<"\nRemovendo da posicao 2: \n";
   remove_posicao(jogador,2);
   imprime_generico(jogador);
@@ -71,9 +83,12 @@ int main(){
   remove_posicao(jogador,2);
   imprime_generico(jogador);
 
-  cout<<"\nInserindo 3 na posicao 3:\n";
-  insere_posicao(jogador,3,dado3);
+  cout<<"\nRemovendo da posicao 2: \n";
+  remove_posicao(jogador,2);
   imprime_generico(jogador);
+
   
+
+
   return 1;
 }

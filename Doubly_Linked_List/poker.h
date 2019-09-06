@@ -139,11 +139,11 @@ void ordenar_cartas_quick(TLista<TIPO> &lista,int first, int last){//Quick Sort
         while(i<j){
             while(Ele_i->dado<=Ele_p->dado&&i<last){    //lista.elemento[i].dado<=lista.elemento[pivot].dado&&i<last){
                 i++;
-                Ele_i = elem_na_posi(lista,i);
+                Ele_i = Ele_i->prox;
             }
             while(Ele_j->dado>Ele_p->dado){ //lista.elemento[j].dado>lista.elemento[pivot].dado){
                 j--;
-                Ele_j = elem_na_posi(lista,j);
+                Ele_j = Ele_j->ant;
             }
             if(i<j){
                 swap(Ele_i->dado,Ele_j->dado);  //lista.elemento[i].dado,lista.elemento[j].dado);

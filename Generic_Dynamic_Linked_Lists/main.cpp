@@ -41,29 +41,43 @@ int main(){
   remove_inicio(jogador);
   imprime_generico(jogador);
 
-  cout<<"\nInserindo 1 no inicio e 1 no final: \n";
-  insere_inicio(jogador,dado);
-  insere_fim(jogador,dado3);
+  cout<<"\nInserindo 3 na posicao 1:\n";
+  insere_posicao(jogador,1,dado3);
   imprime_generico(jogador);
 
-  cout<<"\nInserindo na posicao 1:\n";
-  insere_posicao(jogador,1,dado3);
+  cout<<"\nRemovendo da posicao 1: \n";
+  remove_posicao(jogador,1);
+  imprime_generico(jogador);
+
+  cout<<"\nInserindo 1 na posicao 1:\n";
+  insere_posicao(jogador,1,dado);
+  imprime_generico(jogador);
+
+  cout<<"\nInserindo 2 na posicao 2:\n";
+  insere_posicao(jogador,2,dado2);
+  imprime_generico(jogador);
+
+  cout<<"\nInserindo 3 na posicao 2:\n";
+  insere_posicao(jogador,2,dado3);
+  imprime_generico(jogador);
+
+  cout<<"\nRemovendo da posicao 1: \n";
+  remove_posicao(jogador,1);
   imprime_generico(jogador);
 
   cout<<"\nRemovendo da posicao 3: \n";
   remove_posicao(jogador,3);
   imprime_generico(jogador);
 
-  cout<<"\nRemovendo da posicao 2: \n";
-  remove_posicao(jogador,2);
-  imprime_generico(jogador);
 
-  cout<<"\nInserindo na posicao 3:\n";
-  insere_posicao(jogador,3,dado);
-  imprime_generico(jogador);
+
+
+
+
+
   
-  cout<<"\nInserindo 2 na posicao 2:\n";
-  insere_posicao(jogador,2,dado2);
-  imprime_generico(jogador);
-  return 1;
+  
+  
+
+  return 0;
 }
