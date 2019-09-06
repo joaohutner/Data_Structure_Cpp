@@ -1,5 +1,3 @@
-#include <iostream>
-using namespace std;
 //Structs
 template <typename TIPO>
 struct TElemento{
@@ -11,6 +9,7 @@ template <typename TIPO>
 struct TFila{
   TElemento<TIPO> *inicio;
 };
+
 //Funções
 template<typename TIPO>
 TElemento<TIPO> * novo_elemento_fila(TIPO dado){ //retorno do tipo TElemento
@@ -53,7 +52,10 @@ bool Dequeue(TFila<TIPO> &fila){
         TElemento<TIPO> *aux = fila.inicio;
         fila.inicio = fila.inicio->prox;
         delete aux;
-        //imprime_generico();
+        //Posso dar return no dado também, qual é o correto?
+        //Como fazer essa impressão?
+        imprime(dado);
+        return 1;
     }
 }
 

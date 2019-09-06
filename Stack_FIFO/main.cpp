@@ -5,6 +5,8 @@ using namespace std;
 
 
 int main(){
+    TFila<TAtende> atendimentos;
+    inicializa_fila(atendimentos);
     TAtende pessoa1;
     pessoa1.nome = "Jovem";
     pessoa1.boletos = 4;
@@ -15,6 +17,12 @@ int main(){
     pessoa3.nome = "Idosa";
     pessoa3.boletos = 2;
 
-    imprime(pessoa1);
-    imprime(pessoa2);
+    Queue(atendimentos,pessoa1);
+    Queue(atendimentos,pessoa2);
+    Queue(atendimentos,pessoa3);
+
+    Dequeue(atendimentos);
+    Dequeue(atendimentos);
+    Dequeue(atendimentos);
+    Dequeue(atendimentos);
 }
