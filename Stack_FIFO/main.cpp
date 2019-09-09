@@ -5,6 +5,8 @@ using namespace std;
 
 
 int main(){
+    int contar = 0;
+
     TFila<TAtende> atendimentos;
     inicializa_fila(atendimentos);
     TAtende pessoa1;
@@ -21,8 +23,14 @@ int main(){
     Queue(atendimentos,pessoa2);
     Queue(atendimentos,pessoa3);
 
-    Dequeue(atendimentos);
-    Dequeue(atendimentos);
-    Dequeue(atendimentos);
-    Dequeue(atendimentos);
+    int pessoas = 0;
+    for(int i = 0; i<3;i++){
+        imprime_PESSOA(Dequeue(atendimentos),contar);
+        pessoas++;
+    }
+
+    float media = (float)contar/pessoas;
+    cout<<endl<<"Numero de pessoas: "<<pessoas<<endl;
+    cout<<"Numero de boletos: "<<contar<<endl;
+    cout<<"Media de boletos por pessoa: "<<media<<endl;
 }

@@ -13,17 +13,19 @@ bool imprime_tudo(TFila<TIPO> &fila){
     }
     else{
         TElemento<TIPO> *nave = fila.inicio;
-        while(nave->prox =! NULL){
-            imprime(nave->dado);
-            nave->prox;
+        while(nave != NULL){
+            imprime_PESSOA(nave->dado,0);
+            nave = nave->prox;
         }
         return 1;
     }
 }
 
-void imprime(TAtende pessoa){
+void imprime_PESSOA(TAtende pessoa,int &contar){
+    int i;
     cout<<"Pessoa: "<<pessoa.nome<<endl;
-    for(int i=0;i<pessoa.boletos;i++){
+    for(i=0;i<pessoa.boletos;i++){
         cout<<"Em atendimento..."<<i+1<<endl;
     }
+    contar = contar + i;
 }

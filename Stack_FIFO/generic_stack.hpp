@@ -42,21 +42,15 @@ bool Queue(TFila<TIPO> &fila, TIPO dado){
 }
 
 template<typename TIPO>
-bool Dequeue(TFila<TIPO> &fila){
-    if(fila.inicio == NULL){
-        cout<<"There's no element in queue!\n";
-        return 0;
-    }
-    else{
+TIPO Dequeue(TFila<TIPO> &fila){
+    TIPO dado = fila.inicio->dado;
+    if(fila.inicio != NULL){
         TIPO dado = fila.inicio->dado;
         TElemento<TIPO> *aux = fila.inicio;
         fila.inicio = fila.inicio->prox;
         delete aux;
-        //Posso dar return no dado também, qual é o correto?
-        //Como fazer essa impressão?
-        imprime(dado);
-        return 1;
     }
+    return dado;
 }
 
 
