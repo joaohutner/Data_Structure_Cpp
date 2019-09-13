@@ -38,7 +38,7 @@ bool stack_insert(TStack<TIPE> &stack, TIPE data){
 }
 
 template <typename TIPE>
-TIPE stack_remove(TStack<TIPE> &stack){
+TIPE pop(TStack<TIPE> &stack){
   TIPE data = stack.front->data;
   TElement<TIPE> *aux;
   aux = stack.front->next;

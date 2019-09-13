@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 #include "generic_stack.hpp"
-#include "esp.hpp"
+#include "especi_minerio.hpp"
 
 int main(){
     TStack<TSla> minerar;
@@ -21,9 +21,8 @@ int main(){
     stack_insert(minerar,objeto_2);
     stack_insert(minerar,objeto_3);
 
-    cout_stack(stack_remove(minerar));
-    cout_stack(stack_remove(minerar));
-    cout_stack(stack_remove(minerar));
-
-
+    cout_stack(pop(minerar));
+    cout_stack(pop(minerar));
+    cout_stack(pop(minerar));
+    return 0;
 }
