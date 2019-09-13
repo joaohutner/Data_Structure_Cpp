@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-#include "generic_stack.hpp"
+#include "generic_queue.hpp"
 #include "atendimento.hpp"
 
 
