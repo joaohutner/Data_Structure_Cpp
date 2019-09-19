@@ -59,7 +59,7 @@ int main(){
     char auxilixar_fecha = ' ';
 
 
-    /*
+    
     if(contador_fecha==contador_abre){
         for(i=0;i<contador_abre;i++){
 
@@ -76,12 +76,8 @@ int main(){
                 nope = 0;
             }
         }
-    } */
-    cout_(pop(aberturas));
-    cout_(pop(fechaduras));
+    } 
     
-    cout_(pop(aberturas));
-    cout_(pop(fechaduras));
     
     
     if (nope == 1){
