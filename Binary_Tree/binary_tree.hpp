@@ -85,11 +85,13 @@ void tree_cout_ord_recur(TNode<TIPE> *node){
     }
 }
 
+/*
 template<typename TIPE>
-void tree_cout_ord(TNode<TIPE> node){
-    
-}
+void tree_cout_ord(TNode<TIPE> *node){
+    TNode 
+    while(node!=NULL){
 
-//Inicializa
-//Insere
+    }
+    cout<<node->key<<" ,";
+} */
 
