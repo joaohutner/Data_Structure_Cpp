@@ -77,21 +77,54 @@ void tree_insert_recur(TNode<TIPE> *&node, TIPE data, int key){
 }
 
 template<typename TIPE>
-void tree_cout_ord_recur(TNode<TIPE> *node){
+void tree_cout_ord(TNode<TIPE> *node){
     if(node!=NULL){
         cout<<node->key<<" ,";
-        tree_cout_ord_recur(node->left);
-        tree_cout_ord_recur(node->right);
+        tree_cout_ord(node->left);
+        tree_cout_ord(node->right);
     }
 }
 
-/*
 template<typename TIPE>
-void tree_cout_ord(TNode<TIPE> *node){
-    TNode 
-    while(node!=NULL){
-
+void tree_remove(TNode<TIPE> *&node){
+    TNode<TIPE> *bigger = node->left;
+    TNode<TIPE> *del;
+    if(bigger == NULL){
+       del = node;
+       node = node->right;
+       delete del;
+       return;
     }
-    cout<<node->key<<" ,";
-} */
+    TNode<TIPE> *upper = NULL;
+    while(bigger->right!=NULL){
+        upper = bigger;
+        bigger = bigger->right;
+    }
+    bigger->right = node->right;
+    if(upper != NULL){
+        upper->right = bigger->left;
+        bigger->left = node->left;
+    }
+    del = node;
+    node = bigger;
+    delete del;
+}
+
+template<typename TIPE>
+void tree_search_remove(TNode<TIPE> *&node, int key){
+    if(node != NULL){
+        if(node->key == key){
+            tree_remove(node);
+        }
+        else{
+            if(key>node->key){
+                tree_search_remove(node->right,key);
+            }
+            else{
+                tree_search_remove(node->left,key);
+            }
+        }
+    }
+}
+
 

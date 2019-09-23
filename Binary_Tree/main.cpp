@@ -24,20 +24,23 @@ int main(){
     d.cost = 4;
     d.item = "Dado";
 
-    
-    tree_insert(arvore,b,10);
+   
+    tree_insert(arvore,a,12);
     tree_insert(arvore,a,5);
-    tree_insert(arvore,c,12);
-    tree_insert(arvore,d,11);
-    /*
-    tree_insert_recur(arvore.root,b,10);
-    tree_insert_recur(arvore.root,a,5);
-    tree_insert_recur(arvore.root,c,12);
-    tree_insert_recur(arvore.root,d,11);
-    */
+    tree_insert(arvore,a,3);
+    tree_insert(arvore,a,7);
+    tree_insert(arvore,a,4);
+    tree_insert(arvore,a,30);
+
+    cout<<"Arvore balanceada: "<<endl;
+    tree_cout_ord(arvore.root);
+    cout<<endl;
+    tree_search_remove(arvore.root,12);
+    cout<<"Arvore balanceada apos item removido: "<<endl;
+    tree_cout_ord(arvore.root);
 
 
-    tree_cout_ord_recur(arvore.root);
+
 
 
 
