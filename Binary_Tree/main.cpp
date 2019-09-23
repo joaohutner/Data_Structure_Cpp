@@ -33,11 +33,17 @@ int main(){
     tree_insert(arvore,a,30);
 
     cout<<"Arvore balanceada: "<<endl;
-    tree_cout_ord(arvore.root);
+    tree_cout_ord_espec(arvore.root);
     cout<<endl;
     tree_search_remove(arvore.root,12);
     cout<<"Arvore balanceada apos item removido: "<<endl;
     tree_cout_ord(arvore.root);
+
+
+    //TEspec aux = tree_search(arvore.root,5);
+
+    //cout<<"\nCusto:"<<aux.cost;
+    //cout<<"\nItem: "<<aux.item;
 
 
 

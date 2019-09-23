@@ -127,4 +127,22 @@ void tree_search_remove(TNode<TIPE> *&node, int key){
     }
 }
 
+template<typename TIPE>
+TIPE tree_search(TNode<TIPE> *&node, int key){
+    if(node != NULL){
+        if(node->key == key){
+            TIPE aux = node->data;
+            return aux;
+        }
+        else{
+            if(key>node->key){
+                tree_search(node->right,key);
+            }
+            else{
+                tree_search(node->left,key);
+            }
+        }
+    }
+}
+
 
