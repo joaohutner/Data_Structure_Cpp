@@ -77,15 +77,6 @@ void tree_insert_recur(TNode<TIPE> *&node, TIPE data, int key){
 }
 
 template<typename TIPE>
-void tree_cout_ord(TNode<TIPE> *node){
-    if(node!=NULL){
-        cout<<node->key<<" ,";
-        tree_cout_ord(node->left);
-        tree_cout_ord(node->right);
-    }
-}
-
-template<typename TIPE>
 void tree_remove(TNode<TIPE> *&node){
     TNode<TIPE> *bigger = node->left;
     TNode<TIPE> *del;
@@ -95,14 +86,14 @@ void tree_remove(TNode<TIPE> *&node){
        delete del;
        return;
     }
-    TNode<TIPE> *upper = NULL;
+    TNode<TIPE> *dad = NULL;
     while(bigger->right!=NULL){
-        upper = bigger;
+        dad = bigger;
         bigger = bigger->right;
     }
     bigger->right = node->right;
-    if(upper != NULL){
-        upper->right = bigger->left;
+    if(dad != NULL){
+        dad->right = bigger->left;
         bigger->left = node->left;
     }
     del = node;
@@ -131,8 +122,8 @@ template<typename TIPE>
 TIPE tree_search(TNode<TIPE> *&node, int key){
     if(node != NULL){
         if(node->key == key){
-            TIPE aux = node->data;
-            return aux;
+            TIPE da = node->data;
+            return da;
         }
         else{
             if(key>node->key){
@@ -144,5 +135,39 @@ TIPE tree_search(TNode<TIPE> *&node, int key){
         }
     }
 }
+
+//pre fixed to left
+//Visita a raiz. Percorre a sub-árvore esquerda. Percorre a sub-árvore direita
+template<typename TIPE>
+void tree_cout_pre(TNode<TIPE> *node){
+    if(node!=NULL){
+        cout<<node->key<<" ,";
+        tree_cout_pre(node->left);
+        tree_cout_pre(node->right);
+    }
+}
+
+//center to left
+//Percorre a sub-árvore esquerda. Visita a raiz. Percorre a sub-árvore direita 
+template<typename TIPE>
+void tree_cout_center(TNode<TIPE> *node){
+    if(node!=NULL){
+        tree_cout_center(node->left);
+        cout<<node->key<<" ,";
+        tree_cout_center(node->right);
+    }
+}
+
+//Post fixed to left
+//Percorre a sub-árvore esquerda. Percorre a sub-árvore direita. Visita a raiz
+template<typename TIPE>
+void tree_cout_pos(TNode<TIPE> *node){
+    if(node!=NULL){
+        tree_cout_pos(node->left);
+        tree_cout_pos(node->right);
+        cout<<node->key<<" ,";
+    }
+}
+
 
 
