@@ -1,6 +1,7 @@
 template <typename TIPE>
 struct TNode{
     int key;
+    int bal;
     TIPE data;
     TNode<TIPE> *right;
     TNode<TIPE> *left;
@@ -19,6 +20,7 @@ TNode<TIPE> * new_tree_element(TIPE data, int key){
     TNode<TIPE> *new_tree = new TNode<TIPE>;
     new_tree->left = NULL;
     new_tree->right = NULL;
+    new_tree->bal = 0;
     new_tree->key = key;
     new_tree->data = data;
     return new_tree;

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <string.h>
 using namespace std;
-#include "binary_tree.hpp"
+#include "balanced_tree.hpp"
 #include "especific.hpp"
 
 int main(){
